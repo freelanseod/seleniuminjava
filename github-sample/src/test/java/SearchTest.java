@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.HomePage;
-import pages.SearchResultPage;
+import pages.impl.HomePage;
+import pages.impl.SearchResultPage;
 
 import java.time.LocalDateTime;
 import java.util.List;

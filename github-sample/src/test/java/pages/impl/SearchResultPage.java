@@ -1,20 +1,20 @@
-package pages;
+package pages.impl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import pages.WebPage;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SearchResultPage {
+public class SearchResultPage extends WebPage {
 
     @FindBy(css = ".repo-list-item")
     private List<WebElement> searchResultsItems;
 
     public SearchResultPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     public List<String> searchResultsItems() {
