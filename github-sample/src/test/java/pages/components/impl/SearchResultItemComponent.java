@@ -3,6 +3,7 @@ package pages.components.impl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.components.WebComponent;
+import pages.entities.SearchResultItem;
 
 public class SearchResultItemComponent extends WebComponent {
     private static final By TITLE_SELECTOR = By.cssSelector(".v-align-middle");
@@ -12,13 +13,19 @@ public class SearchResultItemComponent extends WebComponent {
         super(rootElement);
     }
 
-    public boolean containsSearchPhrase(String searchPhrase) {
-        return containsSearchPhraseIgnoringCase(searchPhrase, TITLE_SELECTOR)
-                || containsSearchPhraseIgnoringCase(searchPhrase, DESCRIPTION_SELECTOR);
+    public SearchResultItem convertToSearchResultItem() {
+        return new SearchResultItem(
+                retrieveTitle(),
+                retrieveDescription()
+        );
     }
 
-    private boolean containsSearchPhraseIgnoringCase(String searchPhrase, By selector) {
-        return findElement(selector).getText().toLowerCase().contains(searchPhrase);
+    private String retrieveTitle() {
+        return findElement(TITLE_SELECTOR).getText().toLowerCase();
+    }
+
+    private String retrieveDescription() {
+        return findElement(DESCRIPTION_SELECTOR).getText().toLowerCase();
     }
 
 }
