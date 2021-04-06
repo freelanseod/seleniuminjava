@@ -28,7 +28,8 @@ public class SearchTest {
         HomePage homePage = new HomePage(driver);
         SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
 
-        homePage.setSearchInput(SEARCH_PHRASE);
+        homePage.searchComponent().setSearchInput(SEARCH_PHRASE);
+
         List<String> actualItems = searchResultsPage.searchResultsItems();
         List<String> expectedItems = searchResultsPage.searchResultsItemsWithText(SEARCH_PHRASE);
 
