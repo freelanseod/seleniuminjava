@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.entities.SearchResultItem;
 import pages.impl.HomePage;
 import pages.impl.SearchResultsPage;
 
@@ -30,8 +31,8 @@ public class SearchTest {
 
         homePage.searchComponent().setSearchInput(SEARCH_PHRASE);
 
-        List<String> actualItems = searchResultsPage.searchResultsItems();
-        List<String> expectedItems = searchResultsPage.searchResultsItemsWithText(SEARCH_PHRASE);
+        List<SearchResultItem> actualItems = searchResultsPage.searchResultsItems();
+        List<SearchResultItem> expectedItems = searchResultsPage.searchResultsItemsWithText("uff");
 
         assertEquals(expectedItems, actualItems);
     }
