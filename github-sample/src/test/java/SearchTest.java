@@ -43,8 +43,8 @@ public class SearchTest {
         HomePage homePageGitHub = new HomePage(driver);
         SearchResultPage searchResultGitHubPage = new SearchResultPage(driver);
 
-        homePageGitHub.performSearch(SEARCH_PHRASE);
-        List<String> actualItems = searchResultGitHubPage.searchResultsItems();
+        homePageGitHub.searchComponent().performSearch(SEARCH_PHRASE);
+        List<String> actualItems = searchResultGitHubPage.searchResultsItemsText();
         List<String> expectedItems = searchResultGitHubPage.searchResultsItemsWithText(SEARCH_PHRASE);
 
         assertEquals(expectedItems, actualItems);
