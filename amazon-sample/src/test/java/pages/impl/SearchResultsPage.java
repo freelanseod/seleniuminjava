@@ -3,8 +3,8 @@ package pages.impl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.WebPage;
-import pages.components.WebComponent;
 import pages.components.impl.SearchResultComponent;
+import pages.entities.SearchResultItem;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,20 +16,19 @@ public class SearchResultsPage extends WebPage {
         super(driver);
     }
 
-    public List<String> searchResultsItems() {
-        return searchResultComponents().stream()
-                .map(WebComponent::getText)
+    public List<SearchResultItem> searchResultsItems() {
+        return searchResultItems().stream()
+                .map(SearchResultComponent::convertToSearchResultItem)
                 .collect(Collectors.toList());
     }
 
-    public List<String> searchResultsItemsWithText(String searchPhrase) {
-        return searchResultComponents().stream()
-                .filter(element -> element.containsSearchPhrase(searchPhrase))
-                .map(WebComponent::getText)
+    public List<SearchResultItem> searchResultsItemsWithText(String searchPhrase) {
+        return searchResultsItems().stream()
+                .filter(element -> element.getTitle().contains(searchPhrase) || element.getHrefValue().contains(searchPhrase))
                 .collect(Collectors.toList());
     }
 
-    private List<SearchResultComponent> searchResultComponents() {
+    private List<SearchResultComponent> searchResultItems() {
         return findElements(SEARCH_RESULTS_ITEM_SELECTOR).stream()
                 .map(SearchResultComponent::new)
                 .collect(Collectors.toList());

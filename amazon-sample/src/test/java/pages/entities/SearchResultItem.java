@@ -4,20 +4,19 @@ import java.util.Objects;
 
 public class SearchResultItem {
     private final String title;
+    private final String href;
 
-    private final String description;
-
-    public SearchResultItem(String title, String description) {
+    public SearchResultItem(String title, String href) {
         this.title = title;
-        this.description = description;
+        this.href = href;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getHrefValue() {
+        return href;
     }
 
     @Override
@@ -25,19 +24,19 @@ public class SearchResultItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SearchResultItem that = (SearchResultItem) o;
-        return Objects.equals(title, that.title) && Objects.equals(description, that.description);
+        return Objects.equals(title, that.title) && Objects.equals(href, that.href);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, description);
+        return Objects.hash(title, href);
     }
 
     @Override
-    public String toString() {
+    public String toString() { //not to see unreadable Object if test fail
         return "SearchResultItem{" +
                 "title='" + title + '\'' +
-                ", description='" + description + '\'' +
+                ", href='" + href + '\'' +
                 '}';
     }
 
