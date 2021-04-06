@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.entities.SearchResultItem;
 import pages.impl.HomePage;
 import pages.impl.SearchResultPage;
 
@@ -44,8 +45,8 @@ public class SearchTest {
         SearchResultPage searchResultGitHubPage = new SearchResultPage(driver);
 
         homePageGitHub.searchComponent().performSearch(SEARCH_PHRASE);
-        List<String> actualItems = searchResultGitHubPage.searchResultsItemsText();
-        List<String> expectedItems = searchResultGitHubPage.searchResultsItemsWithText(SEARCH_PHRASE);
+        List<SearchResultItem> actualItems = searchResultGitHubPage.searchResultsItems();
+        List<SearchResultItem> expectedItems = searchResultGitHubPage.searchResultsItemsWithText(SEARCH_PHRASE);
 
         assertEquals(expectedItems, actualItems);
     }
